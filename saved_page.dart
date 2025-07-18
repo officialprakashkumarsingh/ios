@@ -133,9 +133,9 @@ class _CustomSegmentedControl extends StatelessWidget {
             ),
           ),
           Row(
-            children: [
-              _buildSegment("History", 0),
-              _buildSegment("Saved Replies", 1),
+              children: [
+              _buildSegment(context, "History", 0),
+              _buildSegment(context, "Saved Replies", 1),
             ],
           ),
         ],
@@ -143,7 +143,7 @@ class _CustomSegmentedControl extends StatelessWidget {
     );
   }
 
-  Widget _buildSegment(String title, int index) {
+  Widget _buildSegment(BuildContext context, String title, int index) {
     final isSelected = selectedIndex == index;
     return Expanded(
       child: GestureDetector(

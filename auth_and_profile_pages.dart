@@ -204,23 +204,23 @@ class _AuthPageState extends State<_AuthPage> {
                     width: double.infinity,
                     height: 56,
                     child: _isLoading
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.grey.shade200),
-                            ),
-                            child: const Center(
-                              child: SizedBox(
-                                width: 24,
-                                height: 24,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: AppColors.primaryText(context),
+                          ? Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: Colors.grey.shade200),
+                              ),
+                              child: Center(
+                                child: SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: AppColors.primaryText(context),
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
+                            )
                         : ElevatedButton(
                             onPressed: _handleSubmit,
                             style: ElevatedButton.styleFrom(
