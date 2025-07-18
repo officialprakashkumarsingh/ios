@@ -132,7 +132,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.7,
         decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
+          color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -161,6 +161,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
+                physics: const BouncingScrollPhysics(),
                 itemCount: _promptTemplates.length,
                 itemBuilder: (context, index) {
                   final template = _promptTemplates[index];
@@ -263,7 +264,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
           isEditing ? 'Edit Character' : 'Create Character',
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: const Color(0xFFF7F7F7),
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           if (isEditing && !widget.character!.isBuiltIn)
@@ -294,6 +295,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -586,7 +588,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
       builder: (context) => Container(
         height: 300,
         decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
+          color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(

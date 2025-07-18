@@ -168,6 +168,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: _fileService.uploadedFiles.length,
                     itemBuilder: (context, index) {
                       final file = _fileService.uploadedFiles[index];

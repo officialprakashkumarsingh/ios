@@ -118,7 +118,7 @@ class ChatPageState extends State<ChatPage> {
   void _showUserMessageOptions(BuildContext context, Message message) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return Wrap(
@@ -341,6 +341,7 @@ class ChatPageState extends State<ChatPage> {
         Expanded(
           child: ListView.builder(
             controller: _scroll,
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             itemCount: _messages.length,
             itemBuilder: (_, index) {
@@ -359,6 +360,7 @@ class ChatPageState extends State<ChatPage> {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
               child: Row(
                 children: _prompts.map((p) => Padding(
                           padding: const EdgeInsets.only(right: 8),
@@ -544,7 +546,7 @@ class _InputBar extends StatelessWidget {
           Container(
             margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF7F7F7),
+              color: Colors.white,
               borderRadius: BorderRadius.circular(32),
               boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, 4))],
             ),

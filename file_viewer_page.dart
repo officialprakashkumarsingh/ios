@@ -121,6 +121,7 @@ class FileViewerPage extends StatelessWidget {
                         file.type == FileType.gif
                     ? Image.memory(file.bytes, fit: BoxFit.contain)
                     : SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.all(16),
                         child: SelectableText(
                           file.content,
