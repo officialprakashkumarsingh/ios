@@ -373,8 +373,6 @@ class _CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool dark = Theme.of(context).brightness == Brightness.dark;
-
     // Card
     return GestureDetector(
       onLongPress: onLongPress,
@@ -421,13 +419,13 @@ class _CharacterCard extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: dark ? Colors.white : Colors.black,
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             character.customTag!,
                             style: GoogleFonts.poppins(
-                              color: dark ? Colors.black : Colors.white,
+                              color: Colors.white,
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
                             ),

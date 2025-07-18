@@ -12,7 +12,7 @@ void main() {
   AuthService(); 
   
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.white,
+    systemNavigationBarColor: Color(0xFFFAFAFA),
     statusBarColor: Colors.transparent,
     systemNavigationBarIconBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.dark,
@@ -33,10 +33,11 @@ class AhamAIApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme.light(
-          primary: Colors.black,
-          secondary: Colors.black,
+          primary: Color(0xFF383A42),
+          secondary: Color(0xFF4078F2),
+          background: Color(0xFFFAFAFA),
         ),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: const Color(0xFFFAFAFA),
         splashFactory: NoSplash.splashFactory,
         highlightColor: Colors.transparent,
         pageTransitionsTheme: const PageTransitionsTheme(
@@ -49,41 +50,14 @@ class AhamAIApp extends StatelessWidget {
           },
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+          backgroundColor: Color(0xFFFAFAFA),
+          foregroundColor: Color(0xFF383A42),
           elevation: 0,
           scrolledUnderElevation: 0,
         ),
         fontFamily: 'Inter',
       ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: const ColorScheme.dark(
-          primary: Colors.white,
-          secondary: Colors.white,
-          background: Colors.black,
-        ),
-        scaffoldBackgroundColor: Colors.black,
-        splashFactory: NoSplash.splashFactory,
-        highlightColor: Colors.transparent,
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: IOSPageTransitionsBuilder(),
-            TargetPlatform.iOS: IOSPageTransitionsBuilder(),
-            TargetPlatform.linux: IOSPageTransitionsBuilder(),
-            TargetPlatform.macOS: IOSPageTransitionsBuilder(),
-            TargetPlatform.windows: IOSPageTransitionsBuilder(),
-          },
-        ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          scrolledUnderElevation: 0,
-        ),
-        fontFamily: 'Inter',
-      ),
-      themeMode: ThemeMode.system,
+      // Single light theme based on Atom One Light colors
       // AuthGate will decide which page to show
       home: const AuthGate(),
     );
