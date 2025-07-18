@@ -338,7 +338,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
   void _showMessageOptions(BuildContext context, Message message) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -414,7 +414,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
             ),
           ],
         ),
-        backgroundColor: const Color(0xFFF7F7F7),
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           if (_awaitingReply)
@@ -468,6 +468,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
           Expanded(
             child: ListView.builder(
               controller: _scroll,
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(16),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
@@ -580,6 +581,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
                 itemCount: _characterPrompts.length,
                 itemBuilder: (context, index) {
                   return Container(
@@ -602,7 +604,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFF7F7F7),
+              color: Colors.white,
               border: Border(top: BorderSide(color: Colors.grey.shade200)),
             ),
             child: Row(
@@ -658,7 +660,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.7,
         decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
+          color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -729,6 +731,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           border: Border.all(color: Colors.grey.shade200),
                         ),
                         child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
                           child: Text(
                             widget.character.systemPrompt,
                             style: GoogleFonts.poppins(fontSize: 14),

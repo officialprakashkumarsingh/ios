@@ -71,7 +71,7 @@ class _MainShellState extends State<MainShell> {
   void _showModelSelectionSheet() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return SafeArea(
@@ -241,7 +241,7 @@ class _MainShellState extends State<MainShell> {
               ),
         ),
         child: BottomNavigationBar(
-          backgroundColor: const Color(0xFFF7F7F7),
+          backgroundColor: Colors.white,
           elevation: 0,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: _buildAnimatedIcon(Icons.home_filled, Icons.home_outlined, 0), label: 'Home'),

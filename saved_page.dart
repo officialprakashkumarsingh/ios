@@ -42,7 +42,7 @@ class _SavedPageState extends State<SavedPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFFF7F7F7),
+        color: Colors.white,
       ),
       child: Column(
         children: [
@@ -73,6 +73,7 @@ class _SavedPageState extends State<SavedPage> {
           Expanded(
             child: PageView(
               controller: _pageController,
+              physics: const BouncingScrollPhysics(),
               onPageChanged: (index) {
                 setState(() {
                   _selectedIndex = index;
@@ -189,6 +190,7 @@ class _ChatHistoryView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           top: 8,
           bottom: kBottomNavigationBarHeight + 80,
@@ -275,6 +277,7 @@ class _SavedRepliesView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           top: 8,
           bottom: kBottomNavigationBarHeight + 80,

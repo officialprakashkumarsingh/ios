@@ -128,12 +128,13 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               expandedHeight: 120,
               floating: false,
               pinned: true,
-              backgroundColor: const Color(0xFFF7F7F7),
+              backgroundColor: Colors.white,
               elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
@@ -263,7 +264,7 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
+          color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: SafeArea(
