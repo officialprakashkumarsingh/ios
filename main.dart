@@ -32,7 +32,10 @@ class AhamAIApp extends StatelessWidget {
       ),
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: const ColorScheme.light(),
+        colorScheme: const ColorScheme.light(
+          primary: Colors.black,
+          secondary: Colors.black,
+        ),
         scaffoldBackgroundColor: Colors.white,
         splashFactory: NoSplash.splashFactory,
         highlightColor: Colors.transparent,

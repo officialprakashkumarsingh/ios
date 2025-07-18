@@ -111,7 +111,9 @@ class _AuthPageState extends State<_AuthPage> {
     if (mounted) {
       setState(() => _isLoading = false);
       if (error != null) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error), backgroundColor: Colors.red.shade600));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.black),
+        );
       }
     }
   }
@@ -147,7 +149,7 @@ class _AuthPageState extends State<_AuthPage> {
                   Container(
                     height: 2,
                     width: 60,
-                    color: Colors.blue.shade600,
+                    color: Colors.black,
                   ),
                   
                   const SizedBox(height: 40),
@@ -204,7 +206,7 @@ class _AuthPageState extends State<_AuthPage> {
                                 height: 24,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: Colors.blue,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -212,7 +214,7 @@ class _AuthPageState extends State<_AuthPage> {
                         : ElevatedButton(
                             onPressed: _handleSubmit,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue.shade600,
+                              backgroundColor: Colors.black,
                               foregroundColor: Colors.white,
                               elevation: 0,
                               shadowColor: Colors.transparent,
@@ -255,8 +257,8 @@ class _AuthPageState extends State<_AuthPage> {
                         child: Text(
                           widget.showLoginPage ? 'Create account' : 'Sign in',
                           style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w600, 
-                            color: Colors.blue.shade600,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
                             fontSize: 14,
                           ),
                         ),
@@ -376,11 +378,11 @@ class _AuthPageState extends State<_AuthPage> {
           enabledBorder: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.blue.shade600, width: 2),
+            borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.red, width: 2),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: Colors.black, width: 2),
           ),
         ),
       ),
@@ -406,7 +408,7 @@ class _AuthPageState extends State<_AuthPage> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected ? Colors.blue.shade600 : Colors.grey.shade300,
+                  color: isSelected ? Colors.black : Colors.grey.shade300,
                   width: isSelected ? 2.5 : 1,
                 ),
               ),
@@ -546,7 +548,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: GoogleFonts.inter(fontWeight: FontWeight.w500),
                           ),
                           style: TextButton.styleFrom(
-                            foregroundColor: Colors.blue.shade600,
+                            foregroundColor: Colors.black,
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -572,10 +574,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.red.shade600,
+                      foregroundColor: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: Colors.red.shade600),
+                        side: const BorderSide(color: Colors.black),
                       ),
                     ),
                   ),

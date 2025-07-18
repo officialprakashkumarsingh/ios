@@ -243,7 +243,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error saving character: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.black,
           ),
         );
       }
@@ -285,7 +285,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
                     'Save',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
-                      color: Colors.blue.shade600,
+                      color: Colors.black,
                     ),
                   ),
           ),
@@ -309,7 +309,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.blue.shade200, width: 3),
+                          border: Border.all(color: Colors.black, width: 3),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),
@@ -481,7 +481,7 @@ class _CharacterEditorState extends State<CharacterEditor> {
           isEditing ? 'Update Character' : 'Create Character',
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
-        backgroundColor: Colors.blue.shade600,
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
     );
@@ -514,11 +514,11 @@ class _CharacterEditorState extends State<CharacterEditor> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.blue.shade400, width: 2),
+        borderSide: const BorderSide(color: Colors.black, width: 2),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.red),
+      errorBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: Colors.black),
       ),
       contentPadding: const EdgeInsets.all(16),
     );
@@ -635,8 +635,8 @@ class _CharacterEditorState extends State<CharacterEditor> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: isSelected 
-                            ? Border.all(color: Colors.blue, width: 3)
+                        border: isSelected
+                            ? Border.all(color: Colors.black, width: 3)
                             : Border.all(color: Colors.grey.shade300),
                       ),
                       child: CircleAvatar(

@@ -493,7 +493,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: isUser ? Colors.blue.shade50 : Colors.white,
+                              color: isUser ? Colors.grey.shade100 : Colors.white,
                               borderRadius: BorderRadius.circular(16),
                               border: isUser ? null : Border.all(color: Colors.grey.shade200),
                             ),
@@ -508,7 +508,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.blue.shade700,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -539,7 +539,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                                           child: CircularProgressIndicator(
                                             strokeWidth: 2,
                                             valueColor: AlwaysStoppedAnimation<Color>(
-                                              Colors.blue.shade400,
+                                              Colors.black,
                                             ),
                                           ),
                                         ),
@@ -562,7 +562,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           const SizedBox(width: 12),
                           CircleAvatar(
                             radius: 16,
-                            backgroundColor: Colors.blue.shade100,
+                            backgroundColor: Colors.grey.shade200,
                             child: const Icon(Icons.person, size: 20),
                           ),
                         ],
@@ -592,8 +592,8 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                         style: GoogleFonts.poppins(fontSize: 12),
                       ),
                       onPressed: () => _send(_characterPrompts[index]),
-                      backgroundColor: Colors.blue.shade50,
-                      side: BorderSide(color: Colors.blue.shade200),
+                      backgroundColor: Colors.grey.shade100,
+                      side: BorderSide(color: Colors.grey.shade300),
                     ),
                   );
                 },
@@ -636,7 +636,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                 const SizedBox(width: 12),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade600,
+                    color: Colors.black,
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(

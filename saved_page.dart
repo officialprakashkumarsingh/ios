@@ -316,7 +316,7 @@ class _SavedMessageCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(width: 8, color: Colors.blue.shade100),
+            Container(width: 8, color: Colors.grey.shade200),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -325,7 +325,7 @@ class _SavedMessageCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.auto_awesome, size: 20, color: Colors.blue.shade700),
+                        Icon(Icons.auto_awesome, size: 20, color: Colors.black),
                         const SizedBox(width: 8),
                         const Text('Saved Reply', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Color(0xFF424242))),
                       ],

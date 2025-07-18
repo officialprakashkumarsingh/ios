@@ -230,39 +230,7 @@ extension FileTypeExtension on FileType {
     }
   }
 
-  Color get color {
-    switch (this) {
-      case FileType.html:
-        return Colors.orange;
-      case FileType.css:
-        return Colors.blue;
-      case FileType.javascript:
-        return Colors.yellow.shade700;
-      case FileType.json:
-        return Colors.green;
-      case FileType.xml:
-        return Colors.purple;
-      case FileType.text:
-        return Colors.grey;
-      case FileType.markdown:
-        return Colors.indigo;
-      case FileType.dart:
-        return Colors.blue.shade800;
-      case FileType.python:
-        return Colors.green.shade700;
-      case FileType.java:
-        return Colors.red.shade700;
-      case FileType.cpp:
-        return Colors.blue.shade900;
-      case FileType.jpg:
-      case FileType.png:
-      case FileType.gif:
-      case FileType.svg:
-        return Colors.pink.shade400;
-      case FileType.other:
-        return Colors.grey.shade600;
-    }
-  }
+  Color get color => Colors.black;
 
   IconData get icon {
     switch (this) {

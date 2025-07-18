@@ -533,7 +533,7 @@ class _InputBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.grey.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -561,7 +561,7 @@ class _InputBar extends StatelessWidget {
                     enabled: !awaitingReply,
                     maxLines: null,
                     textCapitalization: TextCapitalization.sentences,
-                    cursorColor: Colors.blue,
+                    cursorColor: Colors.black,
                     textInputAction: TextInputAction.send,
                     onSubmitted: (_) => onSend(),
                     decoration: InputDecoration(
@@ -574,7 +574,7 @@ class _InputBar extends StatelessWidget {
                 IconButton(
                   padding: const EdgeInsets.all(12),
                   onPressed: awaitingReply ? onStop : onSend,
-                  icon: Icon(awaitingReply ? Icons.stop_circle : Icons.arrow_outward, color: awaitingReply ? Colors.red : Colors.black87),
+                  icon: Icon(awaitingReply ? Icons.stop_circle : Icons.arrow_outward, color: Colors.black),
                 ),
               ],
             ),

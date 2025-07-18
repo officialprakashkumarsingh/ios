@@ -108,7 +108,7 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: Colors.black),
             child: const Text('Delete'),
           ),
         ],
@@ -335,8 +335,8 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
               
               if (!character.isBuiltIn) // Hide delete for built-in characters
                 ListTile(
-                  leading: const Icon(Icons.delete, color: Colors.red),
-                  title: const Text('Delete Character', style: TextStyle(color: Colors.red)),
+                  leading: const Icon(Icons.delete, color: Colors.black),
+                  title: const Text('Delete Character', style: TextStyle(color: Colors.black)),
                   onTap: () {
                     Navigator.pop(context);
                     _deleteCharacter(character);
@@ -363,32 +363,11 @@ class _CharacterCard extends StatelessWidget {
     required this.onChatTap,
   });
 
-  // Helper method to get default background colors for built-in characters
-  Color _getDefaultBackgroundColor() {
-    // Create different colors based on character name hash for consistency
-    final hash = character.name.hashCode;
-    final colors = [
-      const Color(0xFFE3F2FD), // Light Blue
-      const Color(0xFFF3E5F5), // Light Purple
-      const Color(0xFFE8F5E8), // Light Green
-      const Color(0xFFFFF3E0), // Light Orange
-      const Color(0xFFFCE4EC), // Light Pink
-      const Color(0xFFE0F2F1), // Light Teal
-      const Color(0xFFF1F8E9), // Light Lime
-      const Color(0xFFFFF8E1), // Light Amber
-    ];
-    return colors[hash.abs() % colors.length];
-  }
 
   @override
   Widget build(BuildContext context) {
-    // Get background color - use custom color if available, otherwise use default
-    Color backgroundColor;
-    if (character.backgroundColor != null) {
-      backgroundColor = Color(character.backgroundColor!);
-    } else {
-      backgroundColor = _getDefaultBackgroundColor();
-    }
+    // Backgrounds are kept simple and neutral
+    const Color backgroundColor = Colors.white;
 
     return GestureDetector(
       onLongPress: onLongPress,
@@ -435,9 +414,7 @@ class _CharacterCard extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: character.isBuiltIn 
-                              ? Colors.orange.shade600 
-                              : Colors.purple.shade600,
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
@@ -494,21 +471,20 @@ class _CharacterCard extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: ElevatedButton.icon(
+                          child: ElevatedButton(
                             onPressed: onChatTap,
-                            icon: const Icon(Icons.chat, size: 16),
-                            label: Text(
-                              'Chat',
-                              style: GoogleFonts.poppins(fontSize: 12),
-                            ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue.shade600,
+                              backgroundColor: Colors.black,
                               foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 6),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               elevation: 0,
+                            ),
+                            child: Text(
+                              'Chat',
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                           ),
                         ),
