@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 
 import 'main_shell.dart';
 import 'models.dart' as app_models;
@@ -111,7 +112,18 @@ class _AuthPageState extends State<_AuthPage> {
     if (mounted) {
       setState(() => _isLoading = false);
       if (error != null) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error), backgroundColor: Colors.red.shade600));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: AppColors.primaryText(context),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: 'OK',
+              textColor: AppColors.background(context),
+              onPressed: () {},
+            ),
+          ),
+        );
       }
     }
   }
@@ -119,7 +131,7 @@ class _AuthPageState extends State<_AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background(context),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -136,7 +148,7 @@ class _AuthPageState extends State<_AuthPage> {
                     'AhamAI', 
                     style: GoogleFonts.pacifico(
                       fontSize: 48, 
-                      color: Colors.black87,
+                      color: AppColors.secondaryText(context),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -147,7 +159,7 @@ class _AuthPageState extends State<_AuthPage> {
                   Container(
                     height: 2,
                     width: 60,
-                    color: Colors.blue.shade600,
+                    color: AppColors.primaryText(context),
                   ),
                   
                   const SizedBox(height: 40),
@@ -158,7 +170,7 @@ class _AuthPageState extends State<_AuthPage> {
                         : 'Create your account',
                     style: GoogleFonts.inter(
                       fontSize: 24, 
-                      color: Colors.black87,
+                      color: AppColors.secondaryText(context),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -171,7 +183,7 @@ class _AuthPageState extends State<_AuthPage> {
                         : 'Join AhamAI today',
                     style: GoogleFonts.inter(
                       fontSize: 16, 
-                      color: Colors.grey.shade600,
+                      color: AppColors.secondaryText(context).withOpacity(0.6),
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -204,7 +216,7 @@ class _AuthPageState extends State<_AuthPage> {
                                 height: 24,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: Colors.blue,
+                                  color: AppColors.primaryText(context),
                                 ),
                               ),
                             ),
@@ -212,8 +224,8 @@ class _AuthPageState extends State<_AuthPage> {
                         : ElevatedButton(
                             onPressed: _handleSubmit,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue.shade600,
-                              foregroundColor: Colors.white,
+                              backgroundColor: AppColors.primaryText(context),
+                              foregroundColor: AppColors.background(context),
                               elevation: 0,
                               shadowColor: Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -239,7 +251,7 @@ class _AuthPageState extends State<_AuthPage> {
                       Text(
                         widget.showLoginPage ? 'New to AhamAI?' : 'Already have an account?',
                         style: GoogleFonts.inter(
-                          color: Colors.grey.shade600,
+                          color: AppColors.secondaryText(context).withOpacity(0.6),
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
@@ -255,8 +267,8 @@ class _AuthPageState extends State<_AuthPage> {
                         child: Text(
                           widget.showLoginPage ? 'Create account' : 'Sign in',
                           style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w600, 
-                            color: Colors.blue.shade600,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primaryText(context),
                             fontSize: 14,
                           ),
                         ),
@@ -346,9 +358,9 @@ class _AuthPageState extends State<_AuthPage> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
+        color: AppColors.surface(context),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: Colors.grey.shade300),
       ),
       child: TextField(
         controller: controller,
@@ -356,18 +368,18 @@ class _AuthPageState extends State<_AuthPage> {
         style: GoogleFonts.inter(
           fontSize: 15, 
           fontWeight: FontWeight.w400,
-          color: Colors.black87,
+          color: AppColors.secondaryText(context),
         ),
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.inter(
-            color: Colors.grey.shade500,
+            color: AppColors.secondaryText(context).withOpacity(0.6),
             fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
           prefixIcon: Icon(
-            icon, 
-            color: Colors.grey.shade600, 
+            icon,
+            color: AppColors.secondaryText(context),
             size: 20,
           ),
           filled: false,
@@ -376,11 +388,11 @@ class _AuthPageState extends State<_AuthPage> {
           enabledBorder: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.blue.shade600, width: 2),
+            borderSide: BorderSide(color: AppColors.primaryText(context), width: 2),
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.red, width: 2),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: Colors.black, width: 2),
           ),
         ),
       ),
@@ -391,9 +403,9 @@ class _AuthPageState extends State<_AuthPage> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
+        color: AppColors.surface(context),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: Colors.grey.shade300),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -406,7 +418,7 @@ class _AuthPageState extends State<_AuthPage> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected ? Colors.blue.shade600 : Colors.grey.shade300,
+                  color: isSelected ? AppColors.primaryText(context) : Colors.grey.shade300,
                   width: isSelected ? 2.5 : 1,
                 ),
               ),
@@ -438,7 +450,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showAvatarPicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.surface(context),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
@@ -452,9 +464,9 @@ class _ProfilePageState extends State<ProfilePage> {
               Text(
                 'Select an Avatar', 
                 style: GoogleFonts.inter(
-                  fontSize: 18, 
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black87,
+                  color: AppColors.primaryText(context),
                 )
               ),
               const SizedBox(height: 20),
@@ -481,19 +493,19 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background(context),
       appBar: AppBar(
         title: Text(
           'Profile',
           style: GoogleFonts.inter(
             fontWeight: FontWeight.w600,
-            color: Colors.black87,
+            color: AppColors.primaryText(context),
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background(context),
         elevation: 0,
-        foregroundColor: Colors.black87,
+        foregroundColor: AppColors.primaryText(context),
       ),
       body: ValueListenableBuilder<app_models.User?>(
         valueListenable: _auth.currentUser,
@@ -509,9 +521,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade50,
+                    color: AppColors.surface(context),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.grey.shade200),
+                    border: Border.all(color: Colors.grey.shade300),
                   ),
                   child: Column(
                     children: [
@@ -520,17 +532,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       Text(
                         user.name, 
                         style: GoogleFonts.inter(
-                          fontSize: 20, 
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Colors.black87,
+                          color: AppColors.primaryText(context),
                         )
                       ),
                       const SizedBox(height: 4),
                       Text(
                         user.email, 
                         style: GoogleFonts.inter(
-                          fontSize: 14, 
-                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                          color: AppColors.secondaryText(context).withOpacity(0.6),
                         )
                       ),
                       const SizedBox(height: 20),
@@ -540,13 +552,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: double.infinity,
                         child: TextButton.icon(
                           onPressed: () => _showAvatarPicker(context),
-                          icon: const Icon(Icons.edit, size: 16),
+                          icon: Icon(Icons.edit, size: 16, color: AppColors.icon(context)),
                           label: Text(
                             'Change Avatar',
                             style: GoogleFonts.inter(fontWeight: FontWeight.w500),
                           ),
                           style: TextButton.styleFrom(
-                            foregroundColor: Colors.blue.shade600,
+                            foregroundColor: AppColors.primaryText(context),
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -563,7 +575,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 48,
                   child: TextButton.icon(
                     onPressed: () async => await _auth.signOut(),
-                    icon: const Icon(Icons.logout, size: 18),
+                    icon: Icon(Icons.logout, size: 18, color: AppColors.icon(context)),
                     label: Text(
                       'Sign Out',
                       style: GoogleFonts.inter(
@@ -572,10 +584,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.red.shade600,
+                      foregroundColor: AppColors.primaryText(context),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: Colors.red.shade600),
+                        side: BorderSide(color: AppColors.primaryText(context)),
                       ),
                     ),
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'ios_page_transitions.dart';
+
 import 'auth_and_profile_pages.dart';
 import 'auth_service.dart';
 
@@ -10,7 +12,7 @@ void main() {
   AuthService(); 
   
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Color(0xFFF7F7F7),
+    systemNavigationBarColor: Colors.white,
     statusBarColor: Colors.transparent,
     systemNavigationBarIconBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.dark,
@@ -25,20 +27,63 @@ class AhamAIApp extends StatelessWidget {
     return MaterialApp(
       title: 'AhamAI',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        physics: const BouncingScrollPhysics(),
+      ),
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.grey,
-          brightness: Brightness.light,
+        colorScheme: const ColorScheme.light(
+          primary: Colors.black,
+          secondary: Colors.black,
         ),
-        scaffoldBackgroundColor: const Color(0xFFF7F7F7),
+        scaffoldBackgroundColor: Colors.white,
+        splashFactory: NoSplash.splashFactory,
+        highlightColor: Colors.transparent,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: IOSPageTransitionsBuilder(),
+            TargetPlatform.iOS: IOSPageTransitionsBuilder(),
+            TargetPlatform.linux: IOSPageTransitionsBuilder(),
+            TargetPlatform.macOS: IOSPageTransitionsBuilder(),
+            TargetPlatform.windows: IOSPageTransitionsBuilder(),
+          },
+        ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFFF7F7F7),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
           elevation: 0,
           scrolledUnderElevation: 0,
         ),
         fontFamily: 'Inter',
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: const ColorScheme.dark(
+          primary: Colors.white,
+          secondary: Colors.white,
+          background: Colors.black,
+        ),
+        scaffoldBackgroundColor: Colors.black,
+        splashFactory: NoSplash.splashFactory,
+        highlightColor: Colors.transparent,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: IOSPageTransitionsBuilder(),
+            TargetPlatform.iOS: IOSPageTransitionsBuilder(),
+            TargetPlatform.linux: IOSPageTransitionsBuilder(),
+            TargetPlatform.macOS: IOSPageTransitionsBuilder(),
+            TargetPlatform.windows: IOSPageTransitionsBuilder(),
+          },
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+        ),
+        fontFamily: 'Inter',
+      ),
+      themeMode: ThemeMode.system,
       // AuthGate will decide which page to show
       home: const AuthGate(),
     );

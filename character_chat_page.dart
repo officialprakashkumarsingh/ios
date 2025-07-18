@@ -338,7 +338,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
   void _showMessageOptions(BuildContext context, Message message) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -414,7 +414,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
             ),
           ],
         ),
-        backgroundColor: const Color(0xFFF7F7F7),
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           if (_awaitingReply)
@@ -468,6 +468,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
           Expanded(
             child: ListView.builder(
               controller: _scroll,
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(16),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
@@ -492,7 +493,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: isUser ? Colors.blue.shade50 : Colors.white,
+                              color: isUser ? Colors.grey.shade100 : Colors.white,
                               borderRadius: BorderRadius.circular(16),
                               border: isUser ? null : Border.all(color: Colors.grey.shade200),
                             ),
@@ -507,7 +508,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.blue.shade700,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -538,7 +539,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                                           child: CircularProgressIndicator(
                                             strokeWidth: 2,
                                             valueColor: AlwaysStoppedAnimation<Color>(
-                                              Colors.blue.shade400,
+                                              Colors.black,
                                             ),
                                           ),
                                         ),
@@ -561,7 +562,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           const SizedBox(width: 12),
                           CircleAvatar(
                             radius: 16,
-                            backgroundColor: Colors.blue.shade100,
+                            backgroundColor: Colors.grey.shade200,
                             child: const Icon(Icons.person, size: 20),
                           ),
                         ],
@@ -580,6 +581,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
                 itemCount: _characterPrompts.length,
                 itemBuilder: (context, index) {
                   return Container(
@@ -590,8 +592,8 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                         style: GoogleFonts.poppins(fontSize: 12),
                       ),
                       onPressed: () => _send(_characterPrompts[index]),
-                      backgroundColor: Colors.blue.shade50,
-                      side: BorderSide(color: Colors.blue.shade200),
+                      backgroundColor: Colors.grey.shade100,
+                      side: BorderSide(color: Colors.grey.shade300),
                     ),
                   );
                 },
@@ -602,7 +604,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFF7F7F7),
+              color: Colors.white,
               border: Border(top: BorderSide(color: Colors.grey.shade200)),
             ),
             child: Row(
@@ -634,7 +636,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                 const SizedBox(width: 12),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade600,
+                    color: Colors.black,
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
@@ -658,7 +660,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.7,
         decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
+          color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -729,6 +731,7 @@ class _CharacterChatPageState extends State<CharacterChatPage> {
                           border: Border.all(color: Colors.grey.shade200),
                         ),
                         child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
                           child: Text(
                             widget.character.systemPrompt,
                             style: GoogleFonts.poppins(fontSize: 14),

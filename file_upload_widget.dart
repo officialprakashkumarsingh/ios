@@ -49,7 +49,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    Icon(Icons.cloud_upload, color: Colors.blue.shade600, size: 28),
+                    Icon(Icons.cloud_upload, color: Colors.black, size: 28),
                     const SizedBox(width: 12),
                     Text(
                       'Upload Files',
@@ -71,7 +71,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                         child: Text(
                           'Clear All',
                           style: GoogleFonts.poppins(
-                            color: Colors.red.shade600,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -93,7 +93,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                         icon: Icons.folder_zip,
                         label: 'Upload ZIP',
                         subtitle: 'Extract and upload all files',
-                        color: Colors.orange,
+                        color: Colors.black,
                         onTap: () => _uploadZipFile(setModalState),
                       ),
                     ),
@@ -104,7 +104,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                         icon: Icons.upload_file,
                         label: 'Upload Files',
                         subtitle: 'Select individual files',
-                        color: Colors.blue,
+                        color: Colors.black,
                         onTap: () => _uploadIndividualFiles(setModalState),
                       ),
                     ),
@@ -168,6 +168,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: _fileService.uploadedFiles.length,
                     itemBuilder: (context, index) {
                       final file = _fileService.uploadedFiles[index];
@@ -277,7 +278,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 );
               },
               icon: const Icon(Icons.visibility, size: 20),
-              color: Colors.blue.shade600,
+              color: Colors.black,
             ),
             IconButton(
               onPressed: () {
@@ -287,7 +288,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 setState(() {});
               },
               icon: const Icon(Icons.delete, size: 20),
-              color: Colors.red.shade600,
+              color: Colors.black,
             ),
           ],
         ),
@@ -304,7 +305,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Successfully uploaded ${files.length} files'),
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.black,
           ),
         );
       }
@@ -312,7 +313,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error uploading ZIP file'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.black,
         ),
       );
     } finally {
@@ -330,7 +331,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Successfully uploaded ${files.length} files'),
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.black,
           ),
         );
       }
@@ -338,7 +339,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error uploading files'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.black,
         ),
       );
     } finally {
@@ -368,7 +369,7 @@ class _FileUploadWidgetState extends State<FileUploadWidget> {
                 width: 8,
                 height: 8,
                 decoration: const BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.black,
                   shape: BoxShape.circle,
                 ),
               ),

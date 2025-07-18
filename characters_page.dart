@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 import 'character_models.dart';
 import 'character_service.dart';
 import 'character_editor.dart';
@@ -108,7 +109,7 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.primaryText(context)),
             child: const Text('Delete'),
           ),
         ],
@@ -128,19 +129,20 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               expandedHeight: 120,
               floating: false,
               pinned: true,
-              backgroundColor: const Color(0xFFF7F7F7),
+              backgroundColor: AppColors.background(context),
               elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
                   'AI Characters',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: AppColors.secondaryText(context),
                   ),
                 ),
                 titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
@@ -157,7 +159,7 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
                     // Search bar
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.surface(context),
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
@@ -171,10 +173,12 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
                         onChanged: (value) => setState(() => _searchQuery = value),
                         decoration: InputDecoration(
                           hintText: 'Search characters...',
-                          prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                          prefixIcon: Icon(Icons.search, color: AppColors.secondaryText(context)),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                          hintStyle: GoogleFonts.poppins(color: Colors.grey),
+                          hintStyle: GoogleFonts.poppins(
+                            color: AppColors.secondaryText(context).withOpacity(0.6),
+                          ),
                         ),
                       ),
                     ),
@@ -222,8 +226,11 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
         margin: const EdgeInsets.only(bottom: 80), // Move above bottom navigation
         child: Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Colors.black87, Colors.grey],
+            gradient: LinearGradient(
+              colors: [
+                AppColors.primaryText(context).withOpacity(0.87),
+                Colors.grey,
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -238,17 +245,18 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
           ),
           child: FloatingActionButton.extended(
             onPressed: _createNewCharacter,
-            icon: const Icon(Icons.add_rounded, size: 18),
+            icon: Icon(Icons.add_rounded, size: 18, color: AppColors.primaryText(context)),
             label: Text(
               'New',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
                 letterSpacing: 0.5,
+                color: AppColors.primaryText(context),
               ),
             ),
             backgroundColor: Colors.transparent,
-            foregroundColor: Colors.white,
+            foregroundColor: AppColors.primaryText(context),
             elevation: 0,
             extendedPadding: const EdgeInsets.symmetric(horizontal: 12),
           ),
@@ -262,9 +270,9 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
-        decoration: const BoxDecoration(
-          color: Color(0xFFF7F7F7),
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        decoration: BoxDecoration(
+          color: AppColors.surface(context),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: SafeArea(
           child: Column(
@@ -315,17 +323,17 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
               ),
               
               ListTile(
-                leading: const Icon(Icons.chat),
-                title: Text('Chat with ${character.name}'),
+                leading: Icon(Icons.chat, color: AppColors.icon(context)),
+                title: Text('Chat with ${character.name}', style: TextStyle(color: AppColors.primaryText(context))),
                 onTap: () {
                   Navigator.pop(context);
                   _chatWithCharacter(character);
                 },
               ),
-              
+
               ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text('Edit Character'),
+                leading: Icon(Icons.edit, color: AppColors.icon(context)),
+                title: Text('Edit Character', style: TextStyle(color: AppColors.primaryText(context))),
                 onTap: () {
                   Navigator.pop(context);
                   _editCharacter(character);
@@ -334,8 +342,8 @@ class _CharactersPageState extends State<CharactersPage> with TickerProviderStat
               
               if (!character.isBuiltIn) // Hide delete for built-in characters
                 ListTile(
-                  leading: const Icon(Icons.delete, color: Colors.red),
-                  title: const Text('Delete Character', style: TextStyle(color: Colors.red)),
+                  leading: Icon(Icons.delete, color: AppColors.icon(context)),
+                  title: Text('Delete Character', style: TextStyle(color: AppColors.primaryText(context))),
                   onTap: () {
                     Navigator.pop(context);
                     _deleteCharacter(character);
@@ -362,38 +370,17 @@ class _CharacterCard extends StatelessWidget {
     required this.onChatTap,
   });
 
-  // Helper method to get default background colors for built-in characters
-  Color _getDefaultBackgroundColor() {
-    // Create different colors based on character name hash for consistency
-    final hash = character.name.hashCode;
-    final colors = [
-      const Color(0xFFE3F2FD), // Light Blue
-      const Color(0xFFF3E5F5), // Light Purple
-      const Color(0xFFE8F5E8), // Light Green
-      const Color(0xFFFFF3E0), // Light Orange
-      const Color(0xFFFCE4EC), // Light Pink
-      const Color(0xFFE0F2F1), // Light Teal
-      const Color(0xFFF1F8E9), // Light Lime
-      const Color(0xFFFFF8E1), // Light Amber
-    ];
-    return colors[hash.abs() % colors.length];
-  }
 
   @override
   Widget build(BuildContext context) {
-    // Get background color - use custom color if available, otherwise use default
-    Color backgroundColor;
-    if (character.backgroundColor != null) {
-      backgroundColor = Color(character.backgroundColor!);
-    } else {
-      backgroundColor = _getDefaultBackgroundColor();
-    }
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
+    // Card
     return GestureDetector(
       onLongPress: onLongPress,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.surface(context),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -413,7 +400,7 @@ class _CharacterCard extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                  color: backgroundColor,
+                  color: AppColors.surface(context),
                 ),
                 child: Stack(
                   children: [
@@ -434,15 +421,13 @@ class _CharacterCard extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: character.isBuiltIn 
-                              ? Colors.orange.shade600 
-                              : Colors.purple.shade600,
+                            color: dark ? Colors.white : Colors.black,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             character.customTag!,
                             style: GoogleFonts.poppins(
-                              color: Colors.white,
+                              color: dark ? Colors.black : Colors.white,
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
                             ),
@@ -467,7 +452,7 @@ class _CharacterCard extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: AppColors.secondaryText(context),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -480,7 +465,7 @@ class _CharacterCard extends StatelessWidget {
                         character.description,
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: Colors.grey.shade600,
+                          color: AppColors.secondaryText(context).withOpacity(0.7),
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -493,21 +478,20 @@ class _CharacterCard extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: ElevatedButton.icon(
+                          child: ElevatedButton(
                             onPressed: onChatTap,
-                            icon: const Icon(Icons.chat, size: 16),
-                            label: Text(
-                              'Chat',
-                              style: GoogleFonts.poppins(fontSize: 12),
-                            ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue.shade600,
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              backgroundColor: AppColors.primaryText(context),
+                              foregroundColor: AppColors.background(context),
+                              padding: const EdgeInsets.symmetric(vertical: 6),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               elevation: 0,
+                            ),
+                            child: Text(
+                              'Chat',
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                           ),
                         ),

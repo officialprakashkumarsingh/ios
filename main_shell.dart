@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 import 'package:http/http.dart' as http;
 
 import 'auth_and_profile_pages.dart';
@@ -71,7 +72,7 @@ class _MainShellState extends State<MainShell> {
   void _showModelSelectionSheet() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return SafeArea(
@@ -195,11 +196,11 @@ class _MainShellState extends State<MainShell> {
                 'AhamAI',
                 style: GoogleFonts.pacifico(
                   fontSize: 22,
-                  color: Colors.black87,
+                  color: AppColors.primaryText(context).withOpacity(0.87),
                 ),
               ),
               const SizedBox(width: 8),
-              const Icon(Icons.expand_more_rounded, color: Colors.black54),
+              Icon(Icons.expand_more_rounded, color: AppColors.secondaryText(context)),
             ],
           ),
         ),
@@ -241,7 +242,7 @@ class _MainShellState extends State<MainShell> {
               ),
         ),
         child: BottomNavigationBar(
-          backgroundColor: const Color(0xFFF7F7F7),
+          backgroundColor: Colors.white,
           elevation: 0,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: _buildAnimatedIcon(Icons.home_filled, Icons.home_outlined, 0), label: 'Home'),
@@ -252,8 +253,8 @@ class _MainShellState extends State<MainShell> {
           currentIndex: _selectedIndex,
           onTap: (index) => setState(() => _selectedIndex = index),
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.black87,
-          unselectedItemColor: Colors.grey.shade600,
+          selectedItemColor: AppColors.primaryText(context).withOpacity(0.87),
+          unselectedItemColor: AppColors.secondaryText(context).withOpacity(0.6),
           showSelectedLabels: false,
           showUnselectedLabels: false,
         ),

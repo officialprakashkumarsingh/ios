@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'models.dart';
+import 'app_colors.dart';
 
 /* ----------------------------------------------------------
    SAVED PAGE - With Swiping between Tabs
@@ -42,14 +43,14 @@ class _SavedPageState extends State<SavedPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFFF7F7F7),
+        color: Colors.white,
       ),
       child: Column(
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.surface(context),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
@@ -73,6 +74,7 @@ class _SavedPageState extends State<SavedPage> {
           Expanded(
             child: PageView(
               controller: _pageController,
+              physics: const BouncingScrollPhysics(),
               onPageChanged: (index) {
                 setState(() {
                   _selectedIndex = index;
@@ -118,7 +120,7 @@ class _CustomSegmentedControl extends StatelessWidget {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.surface(context),
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
@@ -153,7 +155,9 @@ class _CustomSegmentedControl extends StatelessWidget {
           child: AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 250),
             style: TextStyle(
-              color: isSelected ? Colors.black87 : Colors.grey.shade600,
+              color: isSelected
+                  ? AppColors.primaryText(context).withOpacity(0.87)
+                  : AppColors.secondaryText(context).withOpacity(0.6),
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               fontSize: 15,
               fontFamily: 'Inter',
@@ -189,6 +193,7 @@ class _ChatHistoryView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           top: 8,
           bottom: kBottomNavigationBarHeight + 80,
@@ -217,7 +222,7 @@ class _ChatHistoryCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface(context),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -239,12 +244,16 @@ class _ChatHistoryCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     session.title,
-                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      color: AppColors.primaryText(context),
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const SizedBox(width: 16),
-                Icon(Icons.arrow_forward_ios_rounded, size: 16, color: Colors.grey.shade400),
+                Icon(Icons.arrow_forward_ios_rounded, size: 16, color: AppColors.secondaryText(context).withOpacity(0.4)),
               ],
             ),
           ),
@@ -275,6 +284,7 @@ class _SavedRepliesView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           top: 8,
           bottom: kBottomNavigationBarHeight + 80,
@@ -313,7 +323,7 @@ class _SavedMessageCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(width: 8, color: Colors.blue.shade100),
+            Container(width: 8, color: Colors.grey.shade200),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -322,16 +332,20 @@ class _SavedMessageCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.auto_awesome, size: 20, color: Colors.blue.shade700),
+                        Icon(Icons.auto_awesome, size: 20, color: AppColors.icon(context)),
                         const SizedBox(width: 8),
-                        const Text('Saved Reply', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Color(0xFF424242))),
+                        Text('Saved Reply', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.primaryText(context))),
                       ],
                     ),
                     const Divider(height: 24),
                     MarkdownBody(
                       data: message.text,
                       styleSheet: MarkdownStyleSheet(
-                        p: const TextStyle(fontSize: 15, height: 1.45, color: Colors.black87),
+                        p: TextStyle(
+                          fontSize: 15,
+                          height: 1.45,
+                          color: AppColors.primaryText(context).withOpacity(0.87),
+                        ),
                         code: const TextStyle(backgroundColor: Color(0xFFF1F1F1), fontFamily: 'monospace'),
                       ),
                     ),
@@ -416,11 +430,15 @@ class _EmptyState extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 80, color: Colors.grey.shade400),
+            Icon(icon, size: 80, color: AppColors.secondaryText(context).withOpacity(0.4)),
             const SizedBox(height: 24),
-            Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xFF424242))),
+            Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.primaryText(context))),
             const SizedBox(height: 8),
-            Text(description, textAlign: TextAlign.center, style: TextStyle(fontSize: 15, color: Colors.grey.shade600, height: 1.4)),
+            Text(
+              description,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15, color: AppColors.secondaryText(context).withOpacity(0.6), height: 1.4),
+            ),
           ],
         ),
       ),
